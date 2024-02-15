@@ -1,0 +1,47 @@
+.wrapper {
+  width: 650px;
+  background-color: var(--secondary);
+  padding-left: 30px;
+  padding-right: 30px;
+  cursor: pointer;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  transition: all ease-in-out 0.15s;
+}
+
+.wrapper:hover {
+  box-shadow: 10px 5px 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.code {
+  font-size: var(--text-xs);
+}
+
+.date {
+  font-size: var(--text-xs);
+}
+
+.leftside {
+  display: flex;
+  gap: 50px;
+}
+
+.rightside {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.separator {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price {
+  font-size: var(--text-xl);
+}
