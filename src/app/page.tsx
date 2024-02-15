@@ -1,6 +1,7 @@
-import { Button, Menu } from "@/features/ui";
+import { Menu } from "@/features/ui";
 import styles from "./page.module.css";
 import { WrapperInvoices } from "@/features/invoices/components/wrapper-invoices";
+import { DrawerInvoice } from "@/features/invoices/components/drawer-invoice";
 
 export default function Home() {
   return (
@@ -16,8 +17,8 @@ export default function Home() {
             options={["Paid", "Pending", "Draft", "Cancelled"]}
             label="Filter by status"
           />
-          <Button label="New invoice" />
         </div>
+        <DrawerInvoice />
       </div>
       <WrapperInvoices />
     </main>

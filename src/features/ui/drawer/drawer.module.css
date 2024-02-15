@@ -1,0 +1,20 @@
+.wrapper {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 800px;
+  background-color: var(--secondary);
+  z-index: 10;
+  border-top-right-radius: 20px;
+  min-height: 100vh;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  width: 100vw; 
+  height: 100vh; 
+  background-color: rgba(0, 0, 0, 0.4);
+}
