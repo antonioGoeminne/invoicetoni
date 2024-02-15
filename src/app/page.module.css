@@ -4,5 +4,24 @@
   justify-content: space-between;
   align-items: center;
   padding: 6rem;
+  max-width: 800px;
+  margin: auto;
   min-height: 100vh;
+}
+
+.subText {
+  font-size: var(--text-xs);
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }

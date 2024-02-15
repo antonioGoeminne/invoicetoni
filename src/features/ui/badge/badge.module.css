@@ -1,0 +1,60 @@
+.badge_paid { 
+    background-color: var(--success-dark);
+    color: var(--success);
+    font-size: var(--text-xs);
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+}
+
+.badge_pending { 
+    background-color: var(--inProcess-dark);
+    color: var(--inProcess);
+    font-size: var(--text-xs);
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+}
+
+.badge_draft { 
+    background-color: var(--draft-dark);
+    color: var(--draft);
+    font-size: var(--text-xs);
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+}
+
+.badge_paid_dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background-color: var(--success);
+}
+
+.badge_pending_dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background-color: var(--inProcess);
+}
+
+.badge_draft_dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background-color: var(--draft);
+}
+
+
+.separator {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
