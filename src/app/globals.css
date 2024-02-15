@@ -5,19 +5,22 @@
     "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
     "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
 
+  --gray: #ccc;
+
   --bg: #141625;
   --primary: #7c5df9;
   --secondary: #1f213a;
   --primary-dark: #6737f0;
   --primary-dark-2: #491eb9;
 
-  --draft:#e1e3fa;
+  --error: #fc5959;
+
+  --draft: #e1e3fa;
   --draft-dark: #2a2c43;
   --success: #33dda7;
   --success-dark: #1e2b3d;
   --inProcess: #ff8a00;
   --inProcess-dark: #292733;
-
 
   --text-xl: 18px;
   --text-lg: 16px;

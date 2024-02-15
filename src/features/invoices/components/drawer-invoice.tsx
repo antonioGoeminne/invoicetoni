@@ -3,6 +3,7 @@
 import { Button, Drawer } from "@/features/ui";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { FormInvoice } from "./form-invoice";
 
 export const DrawerInvoice = () => {
   const router = useRouter()
@@ -26,6 +27,7 @@ export const DrawerInvoice = () => {
       close={handleClose}
       isOpen={openDrawer}
       trigger={<Button onClick={handleOpen} label="New invoice" />}
+      content={<FormInvoice />}
     />
   );
 };
