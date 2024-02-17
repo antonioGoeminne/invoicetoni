@@ -1,8 +1,10 @@
 import { Badge } from "@/features/ui";
 import styles from "../styles/invoice-card.module.css";
+import Link from "next/link";
 
 export const InvoiceCard = () => {
   return (
+    <Link href={'/?id=1'}>
     <div className={styles.wrapper}>
       <div className={styles.separator}>
         <div className={styles.leftside}>
@@ -33,5 +35,7 @@ export const InvoiceCard = () => {
         </div>
       </div>
     </div>
+    </Link>
+
   );
 };
