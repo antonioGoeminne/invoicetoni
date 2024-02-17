@@ -25,3 +25,34 @@
 .button:focus {
   border: 2px solid gray;
 }
+
+/*  secondary  */
+.buttonSecondary {
+  border-radius: 999px;
+  padding: 6px 12px;
+  outline: none;
+  border: none;
+  color: white;
+  background-color: var(--secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  justify-content: space-between;
+  border: 2px solid transparent;
+  transition: all ease-in-out 0.15s;
+}
+
+.buttonSecondary:hover {
+  background-color: var(--secondary-dark);
+  border: 2px solid var(--primary-dark);
+}
+
+.buttonSecondary:active {
+  background-color: var(--secondary-dark-2);
+  border: 2px solid var(--primary-dark);
+}
+
+.buttonSecondary:focus {
+  border: 2px solid var(--primary-dark);
+}

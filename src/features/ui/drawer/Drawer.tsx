@@ -5,7 +5,14 @@ import styles from "./drawer.module.css";
 import useOnClickOutside from "@/hooks/use-click-outside";
 import { AnimatePresence, motion } from "framer-motion";
 
-export const Drawer = ({ trigger, isOpen, close, content }: any) => {
+interface drawerProps {
+  trigger: any;
+  isOpen: boolean;
+  close: () => {};
+  content: any;
+}
+
+export const Drawer = ({ trigger, isOpen, close, content }: drawerProps) => {
   const ref = useRef(null);
   useOnClickOutside(ref, close);
 
@@ -16,9 +23,9 @@ export const Drawer = ({ trigger, isOpen, close, content }: any) => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ width: 0 }}
-            animate={{ width: "500px" }}
-            exit={{ width: 0 }}
+            initial={{ left: -500 }}
+            animate={{ left: 0 }}
+            exit={{ left: -500 }}
             ref={ref}
             className={styles.wrapper}
           >

@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { FormInvoice } from "./form-invoice";
 
 export const DrawerInvoice = () => {
-  const router = useRouter()
+  const router = useRouter();
   const searchParams = useSearchParams();
 
   const id = searchParams.get("id");
@@ -14,7 +14,10 @@ export const DrawerInvoice = () => {
   const [openDrawer, setOpenDrawer] = useState(id?.length || false);
 
   const handleOpen = () => setOpenDrawer(true);
-  const handleClose = () => {setOpenDrawer(false); router.push('/')};
+  const handleClose = () => {
+    setOpenDrawer(false);
+    router.push("/");
+  };
 
   useEffect(() => {
     if (!id?.length) return;
@@ -26,8 +29,10 @@ export const DrawerInvoice = () => {
     <Drawer
       close={handleClose}
       isOpen={openDrawer}
-      trigger={<Button onClick={handleOpen} label="New invoice" />}
-      content={<FormInvoice />}
+      trigger={
+        <Button onClick={handleOpen} withicon="true" label="New invoice" />
+      }
+      content={<FormInvoice setOpenDrawer={setOpenDrawer} />}
     />
   );
 };
