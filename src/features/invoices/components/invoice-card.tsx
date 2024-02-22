@@ -14,7 +14,7 @@ export const InvoiceCard = (props: invoiceCardType) => {
   const { _id, client_name, due_date, status, total_amount } = invoice;
 
   const invoice_id = `#${_id.slice(-5).toUpperCase()}`;
-  const formatted_date = format(new Date(due_date), "dd MMM yyyy");
+  const formatted_date = due_date ? format(new Date(due_date), "dd MMM yyyy") : ''
 
   return (
     <Link href={`/?id=${_id}`}>

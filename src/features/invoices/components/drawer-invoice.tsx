@@ -35,7 +35,11 @@ export const DrawerInvoice = () => {
       close={handleClose}
       isOpen={openDrawer}
       trigger={
-        <Button onClick={handleOpen} withicon="true" label="New invoice" />
+        <Button
+          onClick={() => handleOpen(id)}
+          withicon="true"
+          label="New invoice"
+        />
       }
       content={
         <>

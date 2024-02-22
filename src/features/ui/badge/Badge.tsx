@@ -7,13 +7,13 @@ interface badgeProps {
 export const Badge = (props: badgeProps) => {
   const { status } = props;
 
-  const style = {
+  const style: any = {
     paid: "badge_paid",
     draft: "badge_draft",
     pending: "badge_pending",
   };
 
-  const style_dot = {
+  const style_dot: any = {
     paid: "badge_paid_dot",
     draft: "badge_draft_dot",
     pending: "badge_pending_dot",

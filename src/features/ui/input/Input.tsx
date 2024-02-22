@@ -5,6 +5,7 @@ interface inputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   sx?: object;
   error?: any; // valibot don't give an example for this
+  value?: any
 }
 
 export const Input = (props: inputProps) => {

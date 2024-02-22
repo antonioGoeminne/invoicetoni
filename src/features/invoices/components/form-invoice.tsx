@@ -19,15 +19,25 @@ import { InvoiceType } from "../types";
 import { format, isValid } from "date-fns";
 import { getInvoice, postInvoice, putInvoice } from "@/features/api";
 
-export const FormInvoice = ({ id }: { id: string }) => {
-  const [defaultData, setDefaultData] = useState<InvoiceType | null>();
+export const FormInvoice = ({ id }: { id?: string | null }) => {
+  const [defaultData, setDefaultData] = useState<InvoiceType>({
+    _id: "",
+    client_email: "",
+    client_name: "",
+    due_date: null,
+    created_date: null,
+    status: "draft",
+    total_amount: 0,
+  });
   const form = useForm({
     defaultValues: {
       ...defaultData,
-      total: defaultData?.total_amount,
-      due_date: new Date(defaultData?.due_date),
+      client_name: defaultData?.client_name,
+      client_email: defaultData?.client_email,
+      total_amount: defaultData?.total_amount,
+      due_date: defaultData?.due_date ? new Date(defaultData.due_date) : null,
     },
-    onSubmit: async ({ value }) => {
+    onSubmit: async ({ value }: { value: InvoiceType }) => {
       if (id?.length) {
         await putInvoice(value);
       } else {
@@ -36,19 +46,12 @@ export const FormInvoice = ({ id }: { id: string }) => {
     },
     validatorAdapter: valibotValidator,
   });
-  console.log("defaultData", {
-    defaultValues: {
-      ...defaultData,
-      total: defaultData?.total_amount,
-      due_date: defaultData?.due_date?.length
-        ? format(new Date(defaultData?.due_date), "yyyy-MM-dd")
-        : "",
-    },
-  });
 
   const fetchInvoice = async () => {
-    const invoiceData = await getInvoice(id);
-    setDefaultData(invoiceData);
+    if(id) {
+      const invoiceData = await getInvoice(id);
+      setDefaultData(invoiceData);
+    }
   };
 
   useEffect(() => {
@@ -116,7 +119,7 @@ export const FormInvoice = ({ id }: { id: string }) => {
             )}
           />
           <form.Field
-            name={"total"}
+            name={"total_amount"}
             validators={{
               onSubmit: number([
                 minValue(1, "Must be greater than 1"),
@@ -155,7 +158,7 @@ export const FormInvoice = ({ id }: { id: string }) => {
                   id={field.name}
                   value={
                     isValid(field.getValue())
-                      ? format(new Date(field.getValue()), "yyyy-MM-dd")
+                      ? format(new Date(field.getValue() || ""), "yyyy-MM-dd")
                       : field.getValue()
                   }
                   onChange={(e) => field.handleChange(new Date(e.target.value))}

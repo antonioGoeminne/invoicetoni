@@ -8,7 +8,7 @@ import { AnimatePresence, motion } from "framer-motion";
 interface drawerProps {
   trigger: any;
   isOpen: boolean;
-  close: () => {};
+  close: () => void;
   content: any;
 }
 
