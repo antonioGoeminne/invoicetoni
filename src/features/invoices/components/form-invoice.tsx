@@ -1,4 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-children-prop */
+
 import { Button, Input } from "@/features/ui";
 import styles from "../styles/form-invoice.module.css";
 import { useForm } from "@tanstack/react-form";
@@ -12,29 +14,55 @@ import {
   number,
   string,
 } from "valibot";
+import { useEffect, useState } from "react";
+import { InvoiceType } from "../types";
+import { format, isValid } from "date-fns";
+import { getInvoice, postInvoice, putInvoice } from "@/features/api";
 
-export const FormInvoice = ({
-  setOpenDrawer,
-}: {
-  setOpenDrawer: (prop: boolean) => {};
-}) => {
+export const FormInvoice = ({ id }: { id: string }) => {
+  const [defaultData, setDefaultData] = useState<InvoiceType | null>();
   const form = useForm({
     defaultValues: {
-      client_name: "",
-      client_email: "",
-      total: 0,
-      due_date: "",
+      ...defaultData,
+      total: defaultData?.total_amount,
+      due_date: new Date(defaultData?.due_date),
     },
     onSubmit: async ({ value }) => {
-      // Do something with form data
-      console.log(value);
+      if (id?.length) {
+        await putInvoice(value);
+      } else {
+        await postInvoice(value);
+      }
     },
     validatorAdapter: valibotValidator,
   });
+  console.log("defaultData", {
+    defaultValues: {
+      ...defaultData,
+      total: defaultData?.total_amount,
+      due_date: defaultData?.due_date?.length
+        ? format(new Date(defaultData?.due_date), "yyyy-MM-dd")
+        : "",
+    },
+  });
+
+  const fetchInvoice = async () => {
+    const invoiceData = await getInvoice(id);
+    setDefaultData(invoiceData);
+  };
+
+  useEffect(() => {
+    if (id?.length) {
+      fetchInvoice();
+    }
+  }, [id]);
+  const title = id?.length
+    ? `#${id.slice(-5).toUpperCase()} `
+    : "Add new invoice";
 
   return (
     <div>
-      <h2 className={styles.title}>Add new invoice</h2>
+      <h2 className={styles.title}>{title}</h2>
       <form.Provider>
         <form
           className={styles.form}
@@ -55,6 +83,7 @@ export const FormInvoice = ({
               <>
                 <Input
                   placeholder="Toni"
+                  value={field.getValue()}
                   error={field.state.meta.errorMap.onSubmit}
                   sx={{ width: "100%" }}
                   id={field.name}
@@ -76,6 +105,7 @@ export const FormInvoice = ({
               <>
                 <Input
                   placeholder="example@gmail.com"
+                  value={field.getValue()}
                   error={field.state.meta.errorMap.onSubmit}
                   sx={{ width: "100%" }}
                   id={field.name}
@@ -102,6 +132,7 @@ export const FormInvoice = ({
                   sx={{ width: "100%" }}
                   id={field.name}
                   onChange={(e) => field.handleChange(Number(e.target.value))}
+                  value={field.getValue()}
                   label="Total amount"
                 />
               </>
@@ -122,6 +153,11 @@ export const FormInvoice = ({
                   sx={{ width: "100%" }}
                   type="date"
                   id={field.name}
+                  value={
+                    isValid(field.getValue())
+                      ? format(new Date(field.getValue()), "yyyy-MM-dd")
+                      : field.getValue()
+                  }
                   onChange={(e) => field.handleChange(new Date(e.target.value))}
                   label="Date"
                 />
@@ -131,7 +167,6 @@ export const FormInvoice = ({
           <div className={styles.flexButtons}>
             <Button
               type="reset"
-              onClick={() => setOpenDrawer(false)}
               variant={"secondary"}
               sx={{ marginTop: 10, maxWidth: 120 }}
               label="Cancelar"
@@ -140,13 +175,12 @@ export const FormInvoice = ({
               selector={(state) => [state.canSubmit, state.isSubmitting]}
               children={([canSubmit, isSubmitting]) => (
                 <Button
-                  sx={{ marginTop: 10, maxWidth: 120 }}
+                  sx={{ marginTop: 10, maxWidth: 160 }}
                   label="Save changes"
+                  isLoading={isSubmitting}
                   type="submit"
                   disabled={!canSubmit}
-                >
-                  {isSubmitting ? "..." : "Submit"}
-                </Button>
+                />
               )}
             />
           </div>
