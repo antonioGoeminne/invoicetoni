@@ -2,6 +2,7 @@ import { Menu } from "@/features/ui";
 import styles from "./page.module.css";
 import { WrapperInvoices } from "@/features/invoices/components/wrapper-invoices";
 import { DrawerInvoice } from "@/features/invoices/components/drawer-invoice";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
@@ -18,7 +19,9 @@ export default function Home() {
             label="Filter by status"
           />
         </div>
-        <DrawerInvoice />
+        <Suspense>
+          <DrawerInvoice />
+        </Suspense>
       </div>
       <WrapperInvoices />
     </main>
