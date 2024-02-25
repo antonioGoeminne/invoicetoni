@@ -7,7 +7,7 @@ describe("get invoices and show drawer to edit", () => {
 
   it("open invoice card to edit or delete with invoice data", () => {
     cy.visit("/");
-    cy.getByData("invoice-card").click();
+    cy.getByData("invoice-card").first().click();
     cy.getByData("drawer").should("be.visible");
     cy.url().then((url) => {
       const match = url.match(/id=([^&]*)/);
@@ -27,15 +27,16 @@ describe("get invoices and show drawer to edit", () => {
 
   it("edit invoice data", () => {
     cy.visit("/");
-    cy.getByData("invoice-card").click();
+    cy.getByData("invoice-card").first().click();
     cy.getByData("drawer").should("be.visible");
 
     cy.getByData("client_name_field").clear().type("new text sample");
     cy.getByData("submit-btn").click();
 
-    cy.getByData("invoice-card-title").each(($title) =>
-      cy.wrap($title).should("exist").contains("new text sample")
-    );
+    cy.getByData("invoice-card-title")
+      .first()
+      .should("exist")
+      .contains("new text sample");
   });
 });
 
@@ -92,7 +93,7 @@ describe("delete invoice", () => {
     let invoice_client_name: string;
 
     cy.visit("/");
-    cy.getByData("invoice-card").click();
+    cy.getByData("invoice-card").last().click();
     cy.getByData("invoice-card-title")
       .invoke("text")
       .then((txt) => {
