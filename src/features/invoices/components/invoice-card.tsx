@@ -14,16 +14,20 @@ export const InvoiceCard = (props: invoiceCardType) => {
   const { _id, client_name, due_date, status, total_amount } = invoice;
 
   const invoice_id = `#${_id.slice(-5).toUpperCase()}`;
-  const formatted_date = due_date ? format(new Date(due_date), "dd MMM yyyy") : ''
+  const formatted_date = due_date
+    ? format(new Date(due_date), "dd MMM yyyy")
+    : "";
 
   return (
     <Link href={`/?id=${_id}`}>
-      <div className={styles.wrapper}>
+      <div data-test="invoice-card" className={styles.wrapper}>
         <div className={styles.separator}>
           <div className={styles.leftside}>
             <p className={styles.code}>{invoice_id}</p>
             <p className={styles.date}>Due {formatted_date}</p>
-            <p className={styles.date}>{client_name}</p>
+            <p className={styles.date} data-test="invoice-card-title">
+              {client_name}
+            </p>
           </div>
           <div className={styles.rightside}>
             <p className={styles.price}>${total_amount}</p>

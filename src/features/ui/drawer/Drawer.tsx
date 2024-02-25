@@ -28,6 +28,7 @@ export const Drawer = ({ trigger, isOpen, close, content }: drawerProps) => {
             exit={{ left: -500 }}
             ref={ref}
             className={styles.wrapper}
+            data-test="drawer"
           >
             {content}
           </motion.div>
