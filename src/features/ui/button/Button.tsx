@@ -13,6 +13,7 @@ export const Button = (props: ButtonProps) => {
   const { label, withicon, sx = {}, variant = "primary", isLoading } = props;
   return (
     <button
+      data-test="btn"
       className={
         variant === "secondary" ? styles.buttonSecondary : styles.button
       }

@@ -48,7 +48,7 @@ export const FormInvoice = ({ id }: { id?: string | null }) => {
   });
 
   const fetchInvoice = async () => {
-    if(id) {
+    if (id) {
       const invoiceData = await getInvoice(id);
       setDefaultData(invoiceData);
     }
@@ -85,6 +85,7 @@ export const FormInvoice = ({ id }: { id?: string | null }) => {
             children={(field) => (
               <>
                 <Input
+                  data-test="client_name_field"
                   placeholder="Toni"
                   value={field.getValue()}
                   error={field.state.meta.errorMap.onSubmit}
@@ -107,6 +108,7 @@ export const FormInvoice = ({ id }: { id?: string | null }) => {
             children={(field) => (
               <>
                 <Input
+                  data-test="client_email_field"
                   placeholder="example@gmail.com"
                   value={field.getValue()}
                   error={field.state.meta.errorMap.onSubmit}
@@ -129,6 +131,7 @@ export const FormInvoice = ({ id }: { id?: string | null }) => {
             children={(field) => (
               <>
                 <Input
+                  data-test="total_amount_field"
                   placeholder="$1000"
                   type="number"
                   error={field.state.meta.errorMap.onSubmit}
@@ -151,6 +154,7 @@ export const FormInvoice = ({ id }: { id?: string | null }) => {
             children={(field) => (
               <>
                 <Input
+                  data-test="due_date_field"
                   placeholder="2023/12/12"
                   error={field.state.meta.errorMap.onSubmit}
                   sx={{ width: "100%" }}
@@ -178,6 +182,7 @@ export const FormInvoice = ({ id }: { id?: string | null }) => {
               selector={(state) => [state.canSubmit, state.isSubmitting]}
               children={([canSubmit, isSubmitting]) => (
                 <Button
+                  data-test="submit-btn"
                   sx={{ marginTop: 10, maxWidth: 160 }}
                   label="Save changes"
                   isLoading={isSubmitting}
