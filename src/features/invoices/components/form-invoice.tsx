@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-children-prop */
 
-import { Button, Input } from "@/features/ui";
+import { Button, Input, Select } from "@/features/ui";
 import styles from "../styles/form-invoice.module.css";
 import { useForm } from "@tanstack/react-form";
 import { valibotValidator } from "@tanstack/valibot-form-adapter";
@@ -83,18 +83,16 @@ export const FormInvoice = ({ id }: { id?: string | null }) => {
               ]),
             }}
             children={(field) => (
-              <>
-                <Input
-                  data-test="client_name_field"
-                  placeholder="Toni"
-                  value={field.getValue()}
-                  error={field.state.meta.errorMap.onSubmit}
-                  sx={{ width: "100%" }}
-                  id={field.name}
-                  onChange={(e) => field.handleChange(e.target.value)}
-                  label="Client´s name"
-                />
-              </>
+              <Input
+                data-test="client_name_field"
+                placeholder="Toni"
+                value={field.getValue()}
+                error={field.state.meta.errorMap.onSubmit}
+                sx={{ width: "100%" }}
+                id={field.name}
+                onChange={(e) => field.handleChange(e.target.value)}
+                label="Client´s name"
+              />
             )}
           />
           <form.Field
@@ -106,18 +104,16 @@ export const FormInvoice = ({ id }: { id?: string | null }) => {
               ]),
             }}
             children={(field) => (
-              <>
-                <Input
-                  data-test="client_email_field"
-                  placeholder="example@gmail.com"
-                  value={field.getValue()}
-                  error={field.state.meta.errorMap.onSubmit}
-                  sx={{ width: "100%" }}
-                  id={field.name}
-                  onChange={(e) => field.handleChange(e.target.value)}
-                  label="Client´s email"
-                />
-              </>
+              <Input
+                data-test="client_email_field"
+                placeholder="example@gmail.com"
+                value={field.getValue()}
+                error={field.state.meta.errorMap.onSubmit}
+                sx={{ width: "100%" }}
+                id={field.name}
+                onChange={(e) => field.handleChange(e.target.value)}
+                label="Client´s email"
+              />
             )}
           />
           <form.Field
@@ -129,19 +125,30 @@ export const FormInvoice = ({ id }: { id?: string | null }) => {
               ]),
             }}
             children={(field) => (
-              <>
-                <Input
-                  data-test="total_amount_field"
-                  placeholder="$1000"
-                  type="number"
-                  error={field.state.meta.errorMap.onSubmit}
-                  sx={{ width: "100%" }}
-                  id={field.name}
-                  onChange={(e) => field.handleChange(Number(e.target.value))}
-                  value={field.getValue()}
-                  label="Total amount"
-                />
-              </>
+              <Input
+                data-test="total_amount_field"
+                placeholder="$1000"
+                type="number"
+                error={field.state.meta.errorMap.onSubmit}
+                sx={{ width: "100%" }}
+                id={field.name}
+                onChange={(e) => field.handleChange(Number(e.target.value))}
+                value={field.getValue()}
+                label="Total amount"
+              />
+            )}
+          />
+          <form.Field
+            name={"status"}
+            children={(field) => (
+              <Select
+                data-test="status_field"
+                id={field.name}
+                options={["draft", "paid", "pending"]}
+                value={field.getValue()}
+                onChange={(e: any) => field.handleChange(e.target.value)}
+                label="Date"
+              />
             )}
           />
           <form.Field
@@ -152,23 +159,21 @@ export const FormInvoice = ({ id }: { id?: string | null }) => {
               ]),
             }}
             children={(field) => (
-              <>
-                <Input
-                  data-test="due_date_field"
-                  placeholder="2023/12/12"
-                  error={field.state.meta.errorMap.onSubmit}
-                  sx={{ width: "100%" }}
-                  type="date"
-                  id={field.name}
-                  value={
-                    isValid(field.getValue())
-                      ? format(new Date(field.getValue() || ""), "yyyy-MM-dd")
-                      : field.getValue()
-                  }
-                  onChange={(e) => field.handleChange(new Date(e.target.value))}
-                  label="Date"
-                />
-              </>
+              <Input
+                data-test="due_date_field"
+                placeholder="2023/12/12"
+                error={field.state.meta.errorMap.onSubmit}
+                sx={{ width: "100%" }}
+                type="date"
+                id={field.name}
+                value={
+                  isValid(field.getValue())
+                    ? format(new Date(field.getValue() || ""), "yyyy-MM-dd")
+                    : field.getValue()
+                }
+                onChange={(e) => field.handleChange(new Date(e.target.value))}
+                label="Date"
+              />
             )}
           />
           <div className={styles.flexButtons}>

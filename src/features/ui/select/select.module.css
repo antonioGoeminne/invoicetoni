@@ -1,0 +1,11 @@
+.select {
+  background-color: var(--secondary);
+  border: none;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+}
