@@ -18,6 +18,7 @@ import { useEffect, useState } from "react";
 import { InvoiceType } from "../types";
 import { format, isValid } from "date-fns";
 import { getInvoice, postInvoice, putInvoice } from "@/features/api";
+import { useRouter } from "next/navigation";
 
 export const FormInvoice = ({ id }: { id?: string | null }) => {
   const [defaultData, setDefaultData] = useState<InvoiceType>({
@@ -46,6 +47,8 @@ export const FormInvoice = ({ id }: { id?: string | null }) => {
     },
     validatorAdapter: valibotValidator,
   });
+
+  const router = useRouter();
 
   const fetchInvoice = async () => {
     if (id) {
@@ -178,6 +181,7 @@ export const FormInvoice = ({ id }: { id?: string | null }) => {
           />
           <div className={styles.flexButtons}>
             <Button
+              onClick={() => router.push("/")}
               type="reset"
               variant={"secondary"}
               sx={{ marginTop: 10, maxWidth: 120 }}
