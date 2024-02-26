@@ -24,3 +24,12 @@
   align-items: center;
   gap: 8px;
 }
+
+@media (max-width: 768px) {
+  .main {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}

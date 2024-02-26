@@ -45,3 +45,14 @@
 .price {
   font-size: var(--text-xl);
 }
+
+@media (max-width: 768px) {
+  .wrapper {
+    width: 360px;
+    padding: 1rem;
+  }
+
+  .date {
+    display: none;
+  }
+}
